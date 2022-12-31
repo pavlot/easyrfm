@@ -1,0 +1,11 @@
+#pragma once
+
+void test_RFM75RegisterInterface_isBitSet_1B_register(void);
+void test_RFM75RegisterInterface_isBitSet_2B_register(void);
+void test_RFM75RegisterInterface_isBitSet_3B_register(void);
+void test_RFM75RegisterInterface_setBit_1B_register(void);
+void test_RFM75RegisterInterface_setBit_2B_register(void);
+void test_RFM75RegisterInterface_unsetBit_1B_register(void);
+void test_RFM75RegisterInterface_unsetBit_2B_register(void);
+
+
