@@ -5,10 +5,6 @@
 SPIInterface spiInterface;
 Rfm75Controller rfm75Controller(&spiInterface);
 
-void onDebug(const char *s)
-{
-  Serial.print(s);
-}
 void outputRegisterValue(const RFM75Registers::RFM75Register &reg)
 {
   for (int i = 0; i < reg.size; ++i)
@@ -26,7 +22,6 @@ void setup()
   Serial.begin(9600);
   SPI_init();
   // put your setup code here, to run once:
-  rfm75Controller.setOnDebug(onDebug);
 }
 
 void loop()

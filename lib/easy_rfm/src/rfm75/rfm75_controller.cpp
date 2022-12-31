@@ -1,23 +1,11 @@
 #include "spi/spi_config.h"
 #include "rfm75_controller.h"
 
-Rfm75Controller::Rfm75Controller(SPIInterface *iSpi):pSpi(iSpi),registerController(pSpi)
+Rfm75Controller::Rfm75Controller(SPIInterface *iSpi):pSpi(iSpi),registerController(pSpi),configController(registerController)
 {
 
 }
 
-void Rfm75Controller::setOnDebug(void (*f)(const char *s))
-{
-    pDebugFunction = f;
-}
-
-void Rfm75Controller::debug(const char *s)
-{
-    if (pDebugFunction)
-    {
-        pDebugFunction(s);
-    }
-}
 void Rfm75Controller::resetConfig()
 {
         RFM75Registers::RFM75RegisterInterface<RFM75Registers::CONFIG> reg_interface;

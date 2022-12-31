@@ -58,7 +58,9 @@ namespace RFM75Registers
     };
 
     typedef RFM75RegisterTemplate<RFM75BankNumber::BANK_0, 0x00, 1> CONFIG;
+    typedef RFM75RegisterTemplate<RFM75BankNumber::BANK_0, 0x05, 1> RF_CH;
     typedef RFM75RegisterTemplate<RFM75BankNumber::BANK_0, 0x07, 1> STATUS;
+
     typedef RFM75RegisterTemplate<RFM75BankNumber::BANK_1, 0x08, 4> B1_CHIP_ID;
 
     template <class RFM75RegisterImp>
