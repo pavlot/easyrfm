@@ -6,12 +6,8 @@ class Rfm75ConfigController
 public:
     explicit Rfm75ConfigController(RFM75RegisterController &registerController);
     uint8_t setRfChannel(uint8_t channel);
-    uint8_t getRfChannel(uint8_t channel);
+    uint8_t getRfChannel();
 /*    
-    def get_rf_channel(self) -> int:
-        """ Get RF channel configured """
-        return int(self._register_controller.read_register(Rfm75Registers.RF_CH)[0])
-
     def set_lna_gain_high(self) -> int:
         """Setup LNA gain to high
             0:Low gain(20dB down)
