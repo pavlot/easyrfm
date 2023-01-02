@@ -15,7 +15,7 @@ class Rfm75Controller
 public:
     explicit Rfm75Controller(SPIInterface *iSpi);
     void resetConfig();
-    RFM75Registers::RFM75Register getChipId();
+    RFM75Registers::B1_CHIP_ID getChipId();
     RFM75RegisterController& getRegisterController(){return registerController;}; 
 
 

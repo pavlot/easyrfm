@@ -5,7 +5,7 @@
 SPIInterface spiInterface;
 Rfm75Controller rfm75Controller(&spiInterface);
 
-void outputRegisterValue(const RFM75Registers::RFM75Register &reg)
+template<typename RegisterType> void outputRegisterValue(const RegisterType &reg)
 {
   for (int i = 0; i < reg.size; ++i)
   {
@@ -39,14 +39,14 @@ void loop()
   // RFM75Registers::RFM75RegisterInterface<RFM75Registers::CONFIG> reg_interface;
   // RFM75Registers::RFM75Register reg = reg_interface.getStruct();
   // rfm75Controller.getRegisterController().setRegisterBit(reg, 2);
-  // rfm75Controller.getRegisterController().readRegister(reg);
+  // rfm75Controller.getRegisterController().readRegister(reg.bank, reg.addr, reg.size, reg.data);
 
   // Serial.write(a);
   // uint8_t b = reg.getAs<uint8_t>();
   // Serial.write(b);
 
   // rfm75Controller.getRegisterController().unSetRegisterBit(reg, 2);
-  // rfm75Controller.getRegisterController().readRegister(reg);
+  // rfm75Controller.getRegisterController().readRegister(reg.bank, reg.addr, reg.size, reg.data);
   delay(100);
   // Serial.print("Test");
 }
