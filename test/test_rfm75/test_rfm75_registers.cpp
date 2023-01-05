@@ -8,8 +8,7 @@ typedef RFM75Registers::RFM75RegisterTemplate<RFM75BankNumber::BANK_0, 0x00, 3> 
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_isBitSet_1B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_1B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+  REGISTER_1B reg;
   TEST_ASSERT_FALSE(reg.isBitSet(1));
   reg.data[0] = 0b00000001;
   TEST_ASSERT_TRUE_MESSAGE(reg.isBitSet(0), "Assertion for bit 0 failed");
@@ -27,8 +26,7 @@ void test_RFM75RegisterInterface_isBitSet_1B_register(void)
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_isBitSet_2B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_2B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+  REGISTER_2B reg;
   TEST_ASSERT_FALSE(reg.isBitSet(1));
   reg.data[0] = 0b00000001;
   TEST_ASSERT_TRUE_MESSAGE(reg.isBitSet(0), "Assertion for bit 0 failed");
@@ -57,8 +55,7 @@ void test_RFM75RegisterInterface_isBitSet_2B_register(void)
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_isBitSet_3B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_3B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+  REGISTER_3B reg;
   TEST_ASSERT_FALSE(reg.isBitSet(1));
   reg.data[0] = 0b00000001;
   TEST_ASSERT_TRUE_MESSAGE(reg.isBitSet(0), "Assertion for bit 0 failed");
@@ -88,8 +85,7 @@ void test_RFM75RegisterInterface_isBitSet_3B_register(void)
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_setBit_1B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_1B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+  REGISTER_1B reg;
   reg.setBit(0);
   TEST_ASSERT_TRUE_MESSAGE(reg.isBitSet(0), "Assertion for bit 0 set failed");
   TEST_ASSERT_FALSE_MESSAGE(reg.isBitSet(1), "Assertion for bit 1 unset failed");
@@ -97,8 +93,7 @@ void test_RFM75RegisterInterface_setBit_1B_register(void)
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_setBit_2B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_2B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+  REGISTER_2B reg;
   reg.setBit(0);
   reg.setBit(8);
   TEST_ASSERT_TRUE_MESSAGE(reg.isBitSet(0), "Assertion for bit 0 set failed");
@@ -107,8 +102,7 @@ void test_RFM75RegisterInterface_setBit_2B_register(void)
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_unsetBit_1B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_1B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+  REGISTER_1B reg;
   reg.data[0] = 0b11111111;
   reg.unsetBit(0);
   TEST_ASSERT_FALSE_MESSAGE(reg.isBitSet(0), "Assertion for bit 0 unset failed");
@@ -116,8 +110,8 @@ void test_RFM75RegisterInterface_unsetBit_1B_register(void)
 //-------------------------------------------------------------------------------------------------------------------
 void test_RFM75RegisterInterface_unsetBit_2B_register(void)
 {
-  RFM75Registers::RFM75RegisterInterface<REGISTER_2B> reg_interface;
-  RFM75Registers::RFM75Register reg = reg_interface.getStruct();
+
+  REGISTER_2B reg;
   reg.data[0] = 0b11111111;
   reg.data[1] = 0b11111111;
   reg.unsetBit(0);

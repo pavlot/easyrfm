@@ -2,6 +2,7 @@
 #include "rfm75_register_controller.h"
 #include "rfm75_config_controller.h"
 #include "spi/spi_config.h"
+#include "gpio/gpio_config.h"
 
 //---------- Typedefs --------------------------------
 typedef void (*PDebugFunction)(const char *s);
@@ -13,15 +14,39 @@ typedef void (*PDebugFunction)(const char *s);
 class Rfm75Controller
 {
 public:
-    explicit Rfm75Controller(SPIInterface *iSpi);
-    void resetConfig();
+    explicit Rfm75Controller(SPIInterface *iSpi, GPIOPinInterface *cePin);
     RFM75Registers::B1_CHIP_ID getChipId();
-    RFM75RegisterController& getRegisterController(){return registerController;}; 
+    RFM75RegisterController &getRegisterController() { return registerController; };
+    Rfm75ConfigController &getConfigController() { return configController; };
 
+    void activateFeatures();
+    void ceOn();
+    void ceOff();
+    uint8_t readRxPayloadLen();
+
+    void readRxPayload(const uint8_t size, uint8_t *buffer);
+
+    bool isConnected();
+
+    void powerUp();
+
+    void powerDown();
+    void setModeTx();
+    void setModeRx();
+
+    void writeTxPayload(const uint8_t size, const uint8_t *payload, const bool ack_send = false);
+
+    bool isMaxRt();
+    void unsetMaxRt();
+    void isDataSent();
+    void unsetDataSent();
+
+    void flushRx();
 
 private:
     PDebugFunction pDebugFunction = nullptr;
     SPIInterface *pSpi;
-    RFM75RegisterController registerController; 
+    GPIOPinInterface *cePin;
+    RFM75RegisterController registerController;
     Rfm75ConfigController configController;
 };

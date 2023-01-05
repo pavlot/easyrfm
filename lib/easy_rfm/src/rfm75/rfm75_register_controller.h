@@ -11,21 +11,21 @@ class RFM75RegisterController
 public:
     explicit RFM75RegisterController(SPIInterface *iSpi) : pSpi(iSpi){};
     //-------------------------------------------------------------------------------------------------------------------
-    template <typename RegisterType> void RFM75RegisterController::setRegisterBit(RegisterType &reg, uint8_t bit_num)
+    template <typename RegisterType> void setRegisterBit(RegisterType &reg, uint8_t bit_num)
     {
         readRegister(reg.bank, reg.addr, reg.size, reg.data);
         reg.setBit(bit_num);
         writeRegister(reg.bank, reg.addr, reg.size, reg.data);
     }
     //-------------------------------------------------------------------------------------------------------------------
-    template <typename RegisterType> void RFM75RegisterController::unSetRegisterBit(RegisterType &reg, uint8_t bit_num)
+    template <typename RegisterType> void unSetRegisterBit(RegisterType &reg, uint8_t bit_num)
     {
         readRegister(reg.bank, reg.addr, reg.size, reg.data);
         reg.unsetBit(bit_num);
         writeRegister(reg.bank, reg.addr, reg.size, reg.data);
     }
     //-------------------------------------------------------------------------------------------------------------------
-    template <typename RegisterType> bool RFM75RegisterController::isRegisterBitSet(RegisterType &reg, uint8_t bit_num)
+    template <typename RegisterType> bool isRegisterBitSet(RegisterType &reg, uint8_t bit_num)
     {
         readRegister(reg.bank, reg.addr, reg.size, reg.data);
         return reg.isBitSet(bit_num);

@@ -2,6 +2,7 @@
 #include "spi/spi_config.h"
 
 #include "rfm75_register_controller.h"
+#include "rfm75_commands.h"
 
 //-------------------------------------------------------------------------------------------------------------------
 void RFM75RegisterController::setBankNumber(RFM75BankNumber number)
@@ -15,8 +16,6 @@ void RFM75RegisterController::setBankNumber(RFM75BankNumber number)
 RFM75BankNumber RFM75RegisterController::getBankNumber()
 {
     const uint8_t BANK_BIT_NUM = 7;
-    // RFM75Registers::RFM75RegisterInterface<RFM75Registers::STATUS> reg_interface;
-    // RFM75Registers::RFM75Register reg = reg_interface.getStruct();
     RFM75Registers::STATUS reg;
     pSpi->exchange(&reg.addr, 1, reg.data, reg.size, true, true);
     return reg.isBitSet(BANK_BIT_NUM) ? RFM75BankNumber::BANK_1 : RFM75BankNumber::BANK_0;
@@ -45,7 +44,7 @@ void RFM75RegisterController::writeRegister(const RFM75BankNumber bank, const ui
     {
         switchBankNumber();
     }
-    const uint8_t WRITE_CMD = addr | 0x20;
+    const uint8_t WRITE_CMD = addr | RFM75Commands::WRITE;
     pSpi->write(&WRITE_CMD, 1, true, false);
     pSpi->write(data, size, false, true);
 }
