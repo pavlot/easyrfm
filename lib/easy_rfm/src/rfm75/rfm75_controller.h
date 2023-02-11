@@ -38,7 +38,9 @@ public:
 
     bool isMaxRt();
     void unsetMaxRt();
-    void isDataSent();
+    bool isRxDr();
+    void unsetRxDr();
+    bool isDataSent();
     void unsetDataSent();
 
     void flushRx();

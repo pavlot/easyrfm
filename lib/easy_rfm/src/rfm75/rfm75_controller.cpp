@@ -96,12 +96,13 @@ void Rfm75Controller::writeTxPayload(const uint8_t size, const uint8_t *payload,
     uint8_t command = RFM75Commands::W_TX_PAYLOAD;
     if (getConfigController().getPipeConfigController().isEnabledAutoAcknowledge() && !ack_send)
     {
-        command = RFM75Commands::W_TX_PAYLOAD_NO_ACK;
+         command = RFM75Commands::W_TX_PAYLOAD_NO_ACK;
     }
     ceOff();
     pSpi->write(&command, 1, true, false);
     pSpi->write(payload, size, false, true);
     ceOn();
+    delay(20);
     ceOff();
 }
 //-------------------------------------------------------------------------------------------------------------------
@@ -109,25 +110,38 @@ void Rfm75Controller::writeTxPayload(const uint8_t size, const uint8_t *payload,
 bool Rfm75Controller::isMaxRt()
 {
     RFM75Registers::STATUS reg;
-    registerController.isRegisterBitSet(reg, 4);
+    return registerController.isRegisterBitSet(reg, 4);
 }
 //-------------------------------------------------------------------------------------------------------------------
 void Rfm75Controller::unsetMaxRt()
 {
     RFM75Registers::STATUS reg;
-    registerController.unSetRegisterBit(reg, 4);
+    registerController.setRegisterBit(reg, 4);
 }
 //-------------------------------------------------------------------------------------------------------------------
-void Rfm75Controller::isDataSent()
+
+bool Rfm75Controller::isRxDr()
 {
     RFM75Registers::STATUS reg;
-    registerController.isRegisterBitSet(reg, 5);
+    return registerController.isRegisterBitSet(reg, 6);
+}
+//-------------------------------------------------------------------------------------------------------------------
+void Rfm75Controller::unsetRxDr()
+{
+    RFM75Registers::STATUS reg;
+    registerController.setRegisterBit(reg, 6);
+}
+//-------------------------------------------------------------------------------------------------------------------
+bool Rfm75Controller::isDataSent()
+{
+    RFM75Registers::STATUS reg;
+    return registerController.isRegisterBitSet(reg, 5);
 }
 //-------------------------------------------------------------------------------------------------------------------
 void Rfm75Controller::unsetDataSent()
 {
     RFM75Registers::STATUS reg;
-    registerController.unSetRegisterBit(reg, 5);
+    registerController.setRegisterBit(reg, 5);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
