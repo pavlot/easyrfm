@@ -1,0 +1,21 @@
+{
+    "name": "Easy RFM",
+    "version": "1.0.0",
+    "description": "Library for wireless communication with cheap RFM75 modules",
+    "keywords": "RFM75, Arduino wireless",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/pavlot/easyrfm.git"
+    },
+    "authors":
+    [
+      {
+        "name": "Pavlo Taranov"
+      }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/pavlot/easyrfm",
+    "frameworks": "*",
+    "platforms": "*"
+  }
