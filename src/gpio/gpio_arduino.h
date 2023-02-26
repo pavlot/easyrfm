@@ -10,7 +10,7 @@ protected:
     void _pinMode(const uint8_t mode) { pinMode(this->pin_id, mode); };
     void _setHigh() { digitalWrite(this->pin_id, HIGH); };
     void _setLow() { digitalWrite(this->pin_id, LOW); };
-    void _isHigh() { digitalRead(this->pin_id) == HIGH; };
+    bool _isHigh() { return digitalRead(this->pin_id) == HIGH; };
     uint8_t pin_id = 0;
 };
 
